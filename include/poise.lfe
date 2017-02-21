@@ -1,3 +1,10 @@
+(defrecord route
+  path
+  function)
+
+(defrecord options
+  output-dir)
+
 (defrecord site
-  (routes #m())
-  (opts #m()))
+  (routes '())
+  (opts 'undefined)
