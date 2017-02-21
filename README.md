@@ -1,5 +1,7 @@
 # poise
 
+[![][project-logo]][project-logo-source]
+
 *An LFE Library for the Framework-agnostic Generation of Static HTML Content*
 
 
@@ -79,3 +81,9 @@ TBD
 ----
 <a name="footnote1">1</a>
 [https://www.merriam-webster.com/dictionary/poise](https://www.merriam-webster.com/dictionary/poise)
+
+
+<!-- Named page links below: /-->
+
+[project-logo]: resources/images/kanin-small.png
+[project-logo-large]: resources/images/kanin.png
