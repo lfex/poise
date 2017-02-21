@@ -85,5 +85,5 @@ TBD
 
 <!-- Named page links below: /-->
 
-[project-logo]: resources/images/kanin-small.png
-[project-logo-large]: resources/images/kanin.png
+[project-logo]: resources/images/logo.png
+[project-logo-large]: resources/images/logo-large.png
