@@ -26,6 +26,8 @@ same goals for the Clojure ecosystem.
 
 ## Usage
 
+NOTE: This is a new project, WIP -- not ready for use yet!
+
 ### Site Definition
 
 Definte a site:
