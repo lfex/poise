@@ -2,6 +2,7 @@
 
 *An LFE Library for the Framework-agnostic Generation of Static HTML Content*
 
+
 ## About
 
 <em><strong>poise</strong></em>, n. <sup>[1](#footnote1)</sup>
@@ -24,9 +25,11 @@ The poise LFE library is inspired by the Clojure
 [statis](https://github.com/magnars/stasis) project which accomplishes the
 same goals for the Clojure ecosystem.
 
+
 ## Usage
 
 NOTE: This is a new project, WIP -- not ready for use yet!
+
 
 ### Site Definition
 
@@ -52,6 +55,9 @@ There is a convenience function provided that makes this easier:
      "/about.html" #'about-page/0)
   #m(output-dir "static"))
 ```
+
+In both of the above cases, you'd want to assign the results to a variable,
+e.g., `site-data`.
 
 
 ### Static Content Generation
