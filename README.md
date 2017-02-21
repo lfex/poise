@@ -1,6 +1,6 @@
 # poise
 
-[![][project-logo]][project-logo-source]
+[![][project-logo]][project-logo-large]
 
 *An LFE Library for the Framework-agnostic Generation of Static HTML Content*
 
