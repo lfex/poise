@@ -1,5 +1,11 @@
 # poise
 
+[![Build Status][travis badge]][travis]
+[![LFE Versions][lfe badge]][lfe]
+[![Erlang Versions][erlang badge]][versions]
+[![Tags][github tags badge]][github tags]
+[![Downloads][hex downloads]][hex package]
+
 [![][project-logo]][project-logo-large]
 
 *An LFE Library for the Framework-agnostic Generation of Static HTML Content*
@@ -87,3 +93,18 @@ TBD
 
 [project-logo]: resources/images/logo.png
 [project-logo-large]: resources/images/logo-large.png
+[org]: https://github.com/lfex
+[github]: https://github.com/lfex/poise
+[gitlab]: https://gitlab.com/lfex/poise
+[travis]: https://travis-ci.org/lfex/poise
+[travis badge]: https://img.shields.io/travis/lfex/poise.svg
+[lfe]: https://github.com/rvirding/lfe
+[lfe badge]: https://img.shields.io/badge/lfe-1.2+-blue.svg
+[erlang badge]: https://img.shields.io/badge/erlang-17+-blue.svg
+[versions]: https://github.com/lfex/poise/blob/master/.travis.yml
+[github tags]: https://github.com/lfex/poise/tags
+[github tags badge]: https://img.shields.io/github/tag/lfex/poise.svg
+[github downloads]: https://img.shields.io/github/downloads/atom/atom/total.svg
+[hex badge]: https://img.shields.io/hexpm/v/poise.svg
+[hex package]: https://hex.pm/packages/poise
+[hex downloads]: https://img.shields.io/hexpm/dt/poise.svg
