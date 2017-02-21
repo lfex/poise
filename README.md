@@ -24,6 +24,31 @@ The poise LFE library is inspired by the Clojure
 [statis](https://github.com/magnars/stasis) project which accomplishes the
 same goals for the Clojure ecosystem.
 
+## Usage
+
+Definte a site:
+
+```cl
+(include-lib "poise/include/poise.lfe")
+
+(make-site
+  routes (list
+           (make-route path "/index.html"
+                       function #'index-page/0)
+           (make-route path "/about.html"
+                       function #'about-page/0))
+  opts (make-options output-dir "static"))
+```
+
+There is a convenience function provided that makes this easier:
+
+```cl
+(poise:site
+  #m("/index.html" #'index-page/0
+     "/about.html" #'about-page/0)
+  #m(output-dir "static"))
+```
+
 ----
 <a name="footnote1">1</a>
 [https://www.merriam-webster.com/dictionary/poise](https://www.merriam-webster.com/dictionary/poise)
