@@ -26,6 +26,8 @@ same goals for the Clojure ecosystem.
 
 ## Usage
 
+### Site Definition
+
 Definte a site:
 
 ```cl
@@ -48,6 +50,18 @@ There is a convenience function provided that makes this easier:
      "/about.html" #'about-page/0)
   #m(output-dir "static"))
 ```
+
+
+### Static Content Generation
+
+Generate the site:
+
+```cl
+(poise:generate site-data)
+```
+
+That's it!
+
 
 ----
 <a name="footnote1">1</a>
