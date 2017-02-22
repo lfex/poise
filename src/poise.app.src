@@ -1,6 +1,6 @@
 {application, poise,
  [{description, "An LFE Library for the Framework-agnostic Generation of Static HTML Content"},
-  {vsn, "0.1.0-dev"},
+  {vsn, "0.1.0-alpha"},
   {modules,
    [poise]},
   {registered, []},
