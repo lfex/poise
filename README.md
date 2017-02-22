@@ -48,19 +48,20 @@ Definte a site:
 
 (make-site
   routes (list
-           (make-route path "/index.html"
-                       function #'index-page/0)
-           (make-route path "/about.html"
-                       function #'about-page/0))
+           (make-route path "index.html"
+                       func (lambda () (index-page)))
+           (make-route path "about.html"
+                       func (lambda () (about-page))))
   opts (make-options output-dir "static"))
 ```
 
-There is a convenience function provided that makes this easier:
+There is a convenience function provided that makes this easier (and is
+thus the recommended approach):
 
 ```cl
 (poise:site
-  #m("/index.html" #'index-page/0
-     "/about.html" #'about-page/0)
+  '(("index.html" (lambda () (index-page)))
+    ("about.html" (lambda () (about-page))))
   #m(output-dir "static"))
 ```
 
@@ -100,7 +101,7 @@ TBD
 [travis badge]: https://img.shields.io/travis/lfex/poise.svg
 [lfe]: https://github.com/rvirding/lfe
 [lfe badge]: https://img.shields.io/badge/lfe-1.2+-blue.svg
-[erlang badge]: https://img.shields.io/badge/erlang-17+-blue.svg
+[erlang badge]: https://img.shields.io/badge/erlang-18+-blue.svg
 [versions]: https://github.com/lfex/poise/blob/master/.travis.yml
 [github tags]: https://github.com/lfex/poise/tags
 [github tags badge]: https://img.shields.io/github/tag/lfex/poise.svg
