@@ -1,10 +1,10 @@
 (defrecord route
   path
-  function)
+  func)
 
 (defrecord options
   output-dir)
 
 (defrecord site
   (routes '())
-  (opts 'undefined)
+  (opts 'undefined))
