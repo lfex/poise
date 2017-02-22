@@ -92,7 +92,7 @@ That's it!
 
 ## Additional Features [&#x219F;](#contents)
 
-TBD
+TBD (See upcoming [feature tickets](https://github.com/lfex/poise/issues?q=is%3Aissue+is%3Aopen+label%3Afeature))
 
 
 ## License [&#x219F;](#contents)
