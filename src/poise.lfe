@@ -15,7 +15,7 @@
   ((output-dir (match-route path path func func))
     (let ((filename (filename:join output-dir path)))
       (filelib:ensure_dir filename)
-      (case (file:write_file filename (list_to_binary (apply call func)))
+      (case (file:write_file filename (list_to_binary (funcall func)))
         ('ok (io:format "Created ~s.~n" `(,filename)))))))
 
 (defun generate
