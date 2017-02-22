@@ -46,7 +46,7 @@ same goals for the Clojure ecosystem.
 
 ## Usage [&#x219F;](#contents)
 
-NOTE: This is a new project, WIP -- not ready for use yet!
+NOTE: This is a new project in an alpha release. Please test and submit tickets!
 
 
 ### Site Definition [&#x219F;](#contents)
