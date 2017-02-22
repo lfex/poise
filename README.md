@@ -11,7 +11,17 @@
 *An LFE Library for the Framework-agnostic Generation of Static HTML Content*
 
 
-## About
+#### Contents
+
+* [About](#about-)
+* [Usage](#usage-)
+  * [Site Definition](#site-definition-)
+  * [Static Content Generation](#static-content-generation-)
+* [Additional Features](#additional-features-)
+* [License](#license-)
+
+
+## About [&#x219F;](#contents)
 
 <em><strong>poise</strong></em>, n. <sup>[1](#footnote1)</sup>
 
@@ -34,12 +44,12 @@ The poise LFE library is inspired by the Clojure
 same goals for the Clojure ecosystem.
 
 
-## Usage
+## Usage [&#x219F;](#contents)
 
 NOTE: This is a new project, WIP -- not ready for use yet!
 
 
-### Site Definition
+### Site Definition [&#x219F;](#contents)
 
 Definte a site:
 
@@ -69,7 +79,7 @@ In both of the above cases, you'd want to assign the results to a variable,
 e.g., `site-data`.
 
 
-### Static Content Generation
+### Static Content Generation [&#x219F;](#contents)
 
 Generate the site:
 
@@ -80,9 +90,16 @@ Generate the site:
 That's it!
 
 
-## Additional Features
+## Additional Features [&#x219F;](#contents)
 
 TBD
+
+
+## License [&#x219F;](#contents)
+
+Copyright © 2017, Duncan McGreggor
+
+Apache License, Version 2.0
 
 
 ----
