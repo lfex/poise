@@ -70,8 +70,8 @@ thus the recommended approach):
 
 ```cl
 (poise:site
-  '(("index.html" (lambda () (index-page)))
-    ("about.html" (lambda () (about-page))))
+  `(("index.html" ,#'index-page/0)))
+    ("about.html" ,#'about-page/0))))
   #m(output-dir "static"))
 ```
 
