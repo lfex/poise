@@ -16,10 +16,6 @@
     (generate-route
       output-dir
       (make-route path path data (funcall func))))
-  ((output-dir (= (match-route data data) route)) (when (is_list data))
-    (generate-route
-      output-dir
-      (set-route-data route (list_to_binary data))))
   ((output-dir (match-route path path data data))
     (let ((filename (filename:join output-dir path)))
       (filelib:ensure_dir filename)
