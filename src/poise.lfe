@@ -19,7 +19,7 @@
   ((output-dir (match-route path path data data))
     (let ((filename (filename:join output-dir path)))
       (filelib:ensure_dir filename)
-      (case (file:write_file filename data)
+      (case (file:write_file filename (list_to_binary data))
         ('ok (io:format "Created ~s.~n" `(,filename)))
         (err err)))))
 
