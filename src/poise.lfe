@@ -12,11 +12,20 @@
                        (maps:get 'output-dir opts-map))))
 
 (defun generate-route
-  ((output-dir (match-route path path func func))
+  ((output-dir (match-route path path func func)) (when (is_function func))
+    (generate-route
+      output-dir
+      (make-route path path data (funcall func))))
+  ((output-dir (= (match-route data data) route)) (when (is_list data))
+    (generate-route
+      output-dir
+      (set-route-data route (list_to_binary data))))
+  ((output-dir (match-route path path data data))
     (let ((filename (filename:join output-dir path)))
       (filelib:ensure_dir filename)
-      (case (file:write_file filename (list_to_binary (funcall func)))
-        ('ok (io:format "Created ~s.~n" `(,filename)))))))
+      (case (file:write_file filename data)
+        ('ok (io:format "Created ~s.~n" `(,filename)))
+        (err err)))))
 
 (defun generate
   (((= (match-site

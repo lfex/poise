@@ -1,6 +1,7 @@
 (defrecord route
   path
-  func)
+  func
+  data)
 
 (defrecord options
   output-dir)
