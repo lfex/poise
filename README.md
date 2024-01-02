@@ -108,19 +108,15 @@ Apache License, Version 2.0
 
 [//]: ---Named-Links---
 
-[project-logo]: https://raw.githubusercontent.com/lfex/poise/main/priv/images/logo.png
-[project-logo-large]:https://raw.githubusercontent.com/lfex/poise/main/priv/images/logo-large.png
+[logo]: https://raw.githubusercontent.com/lfex/poise/main/priv/images/logo.png
+[logo-large]: https://raw.githubusercontent.com/lfex/poise/main/priv/images/logo-large.png
 [org]: https://github.com/lfex
 [github]: https://github.com/lfex/poise
 [gh-actions-badge]: https://github.com/lfex/poise/workflows/ci%2Fcd/badge.svg
 [gh-actions]: https://github.com/lfex/poise/actions
 [lfe]: https://github.com/lfe/lfe
-[lfe badge]: https://img.shields.io/badge/lfe-2.1+-blue.svg
-[erlang badge]: https://img.shields.io/badge/erlang-23+-blue.svg
+[lfe-badge]: https://img.shields.io/badge/lfe-2.1+-blue.svg
+[erlang-badge]: https://img.shields.io/badge/erlang-23+-blue.svg
 [versions]: https://github.com/lfex/poise/blob/master/.github/workflows/cicd.yml
-[github tags]: https://github.com/lfex/poise/tags
-[github tags badge]: https://img.shields.io/github/tag/lfex/poise.svg
-[github downloads]: https://img.shields.io/github/downloads/atom/atom/total.svg
-[hex badge]: https://img.shields.io/hexpm/v/poise.svg
-[hex package]: https://hex.pm/packages/poise
-[hex downloads]: https://img.shields.io/hexpm/dt/poise.svg
+[github-tag]: https://github.com/lfex/poise/tags
+[github-tag-badge]: https://img.shields.io/github/tag/lfex/poise.svg
