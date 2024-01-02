@@ -1,12 +1,11 @@
 # poise
 
-[![Build Status][travis badge]][travis]
-[![LFE Versions][lfe badge]][lfe]
-[![Erlang Versions][erlang badge]][versions]
-[![Tags][github tags badge]][github tags]
-[![Downloads][hex downloads]][hex package]
+[![Build Status][gh-actions-badge]][gh-actions]
+[![LFE Versions][lfe-badge]][lfe]
+[![Erlang Versions][erlang-badge]][versions]
+[![Tag][github-tag-badge]][github-tag]
 
-[![][project-logo]][project-logo-large]
+[![Project Logo][logo]][logo-large]
 
 *An LFE Library for framework-agnostic generation of static HTML content*
 
@@ -113,13 +112,12 @@ Apache License, Version 2.0
 [project-logo-large]: priv/images/logo-large.png
 [org]: https://github.com/lfex
 [github]: https://github.com/lfex/poise
-[gitlab]: https://gitlab.com/lfex/poise
-[travis]: https://travis-ci.org/lfex/poise
-[travis badge]: https://img.shields.io/travis/lfex/poise.svg
-[lfe]: https://github.com/rvirding/lfe
-[lfe badge]: https://img.shields.io/badge/lfe-1.2+-blue.svg
-[erlang badge]: https://img.shields.io/badge/erlang-18+-blue.svg
-[versions]: https://github.com/lfex/poise/blob/master/.travis.yml
+[gh-actions-badge]: https://github.com/lfex/poise/workflows/ci%2Fcd/badge.svg
+[gh-actions]: https://github.com/lfex/poise/actions
+[lfe]: https://github.com/lfe/lfe
+[lfe badge]: https://img.shields.io/badge/lfe-2.1+-blue.svg
+[erlang badge]: https://img.shields.io/badge/erlang-23+-blue.svg
+[versions]: https://github.com/lfex/poise/blob/master/.github/workflows/cicd.yml
 [github tags]: https://github.com/lfex/poise/tags
 [github tags badge]: https://img.shields.io/github/tag/lfex/poise.svg
 [github downloads]: https://img.shields.io/github/downloads/atom/atom/total.svg
