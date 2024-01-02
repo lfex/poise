@@ -1,6 +1,6 @@
 {application, poise,
- [{description, "An LFE Library for the Framework-agnostic Generation of Static HTML Content"},
-  {vsn, "0.1.0-alpha"},
+ [{description, "An LFE Library for framework-agnostic generation of static HTML content"},
+  {vsn, "0.1.0"},
   {modules,
    [poise,
     equipoise]},
@@ -11,11 +11,13 @@
 
   %% Package metadata:
   {pkg_name, poise},
-  {maintainers, ["Duncan McGreggor"]},
   {licenses, ["Apache-2"]},
   {links,
    [{"GitHub", "https://github.com/lfex/poise"},
-    {"Gitlab", "https://gitlab.com/lfex/poise"},
     {"Hex", "https://hex.pm/packages/poise"}
-   ]}
+   ]},
+  {exclude_files, [
+    "priv/images/*",
+    "priv/testing/*"
+  ]}
 ]}.

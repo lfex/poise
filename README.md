@@ -8,7 +8,7 @@
 
 [![][project-logo]][project-logo-large]
 
-*An LFE Library for the Framework-agnostic Generation of Static HTML Content*
+*An LFE Library for framework-agnostic generation of static HTML content*
 
 
 #### Contents
@@ -97,7 +97,7 @@ TBD (See upcoming [feature tickets](https://github.com/lfex/poise/issues?q=is%3A
 
 ## License [&#x219F;](#contents)
 
-Copyright © 2017, Duncan McGreggor
+Copyright © 2017-2024, Duncan McGreggor
 
 Apache License, Version 2.0
 
@@ -107,7 +107,7 @@ Apache License, Version 2.0
 [https://www.merriam-webster.com/dictionary/poise](https://www.merriam-webster.com/dictionary/poise)
 
 
-<!-- Named page links below: /-->
+[//]: ---Named-Links---
 
 [project-logo]: priv/images/logo.png
 [project-logo-large]: priv/images/logo-large.png
