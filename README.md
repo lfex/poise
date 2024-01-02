@@ -109,8 +109,8 @@ Apache License, Version 2.0
 
 <!-- Named page links below: /-->
 
-[project-logo]: resources/images/logo.png
-[project-logo-large]: resources/images/logo-large.png
+[project-logo]: priv/images/logo.png
+[project-logo-large]: priv/images/logo-large.png
 [org]: https://github.com/lfex
 [github]: https://github.com/lfex/poise
 [gitlab]: https://gitlab.com/lfex/poise
