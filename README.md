@@ -14,8 +14,6 @@
 
 * [About](#about-)
 * [Usage](#usage-)
-  * [Site Definition](#site-definition-)
-  * [Static Content Generation](#static-content-generation-)
 * [Name](#name-)
 * [License](#license-)
 
