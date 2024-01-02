@@ -108,8 +108,8 @@ Apache License, Version 2.0
 
 [//]: ---Named-Links---
 
-[project-logo]: priv/images/logo.png
-[project-logo-large]: priv/images/logo-large.png
+[project-logo]: https://raw.githubusercontent.com/lfex/poise/main/priv/images/logo.png
+[project-logo-large]:https://raw.githubusercontent.com/lfex/poise/main/priv/images/logo-large.png
 [org]: https://github.com/lfex
 [github]: https://github.com/lfex/poise
 [gh-actions-badge]: https://github.com/lfex/poise/workflows/ci%2Fcd/badge.svg
