@@ -16,11 +16,28 @@
 * [Usage](#usage-)
   * [Site Definition](#site-definition-)
   * [Static Content Generation](#static-content-generation-)
-* [Additional Features](#additional-features-)
+* [Name](#name-)
 * [License](#license-)
 
 
 ## About [&#x219F;](#contents)
+
+This project is getting an overhaul to allow for better control over rendered Markdown in static sites. Progress is being tracked here:
+
+* [poise redesign](https://github.com/lfex/poise/issues/8)
+
+`poise` aims to be as simple and unopinionated solution as possible to the
+problem of generating static site content in the LFE/Erlang/BEAM world of web
+development. 
+
+While early versions of the poise LFE library were inspired by the Clojure
+[statis](https://github.com/magnars/stasis), in more recent years the Rust-based project [Zola](https://github.com/getzola/zola) has informed our design decisiions (in particular the areas where we found it inflexible).
+
+## Usage [&#x219F;](#contents)
+
+TBD
+
+## Name [&#x219F;](#contents)
 
 <em><strong>poise</strong></em>, n. <sup>[1](#footnote1)</sup>
 
@@ -28,71 +45,6 @@
 1. easy self-possessed assurance of manner; gracious tact in coping or
    handling; the pleasantly tranquil interaction between persons of poise; a
    particular way of carrying oneself; bearing, carriage
-
-`poise` aims to be as simple and unopinionated solution as possible to the
-problem of generating static site content in the LFE/Erlang/BEAM world of web
-development. It boils down to two primary operations:
-
-* `make-site` - a record consturctor that takes a site data structure and
-  content-generation related options
-* `generate` - a function that iterates through the paths and functions in the
-  site data structure, saving them to a conifigured output directory
-
-The poise LFE library is inspired by the Clojure
-[statis](https://github.com/magnars/stasis) project which accomplishes the
-same goals for the Clojure ecosystem.
-
-
-## Usage [&#x219F;](#contents)
-
-NOTE: This is a new project in an alpha release. Please test and submit tickets!
-
-
-### Site Definition [&#x219F;](#contents)
-
-Definte a site:
-
-```cl
-(include-lib "poise/include/poise.lfe")
-
-(make-site
-  routes (list
-           (make-route path "index.html"
-                       func (lambda () (index-page)))
-           (make-route path "about.html"
-                       func (lambda () (about-page))))
-  opts (make-options output-dir "static"))
-```
-
-There is a convenience function provided that makes this easier (and is
-thus the recommended approach):
-
-```cl
-(poise:site
-  `(("index.html" ,#'index-page/0)))
-    ("about.html" ,#'about-page/0))))
-  #m(output-dir "static"))
-```
-
-In both of the above cases, you'd want to assign the results to a variable,
-e.g., `site-data`.
-
-
-### Static Content Generation [&#x219F;](#contents)
-
-Generate the site:
-
-```cl
-(poise:generate site-data)
-```
-
-That's it!
-
-
-## Additional Features [&#x219F;](#contents)
-
-TBD (See upcoming [feature tickets](https://github.com/lfex/poise/issues?q=is%3Aissue+is%3Aopen+label%3Afeature))
-
 
 ## License [&#x219F;](#contents)
 
