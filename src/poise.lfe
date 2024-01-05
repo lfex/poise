@@ -1,64 +1,51 @@
 (defmodule poise
-  (export all))
+  ;; Convenience wrappers
+  (export
+   (start 0)
+   (stop 0))
+  ;; Plottah API
+  ;;(export
+  ;; )
+  ;; Debug
+  (export
+   (echo 1)
+   (pid 0)
+   (ping 0)
+   (raw 1)
+   (state 0)))
 
 (include-lib "poise/include/poise.lfe")
+(include-lib "logjam/include/logjam.hrl")
 
-(defun site (route-list opts-map)
-  (make-site
-    routes (lists:map (match-lambda ((`(,p ,f))
-                        (make-route path p func f)))
-                      route-list)
-    opts (make-options output-dir
-                       (maps:get 'output-dir opts-map))))
+;;; Constants
 
-(defun generate-route
-  ((output-dir (match-route path path func func))
-    (let ((filename (filename:join output-dir path)))
-      (filelib:ensure_dir filename)
-      (case (file:write_file filename (list_to_binary (funcall func)))
-        ('ok (io:format "Created ~s.~n" `(,filename)))))))
+(defun APP () 'plottah)
+(defun SERVER () 'plottah-svr)
+;;(defun default-ms-delay () 100)
+;;(defun default-ms-long-delay () 1000)
 
-(defun generate
-  (((= (match-site
-         routes routes
-         opts (= (match-options
-                   output-dir output-dir) opts)) data))
-  (lists:map (lambda (x) (generate-route output-dir x)) routes)
-  'ok))
+;;; Convenience wrappers
 
-;; XXX See if we can get this one working:
-; (defmodule poise
-;   (export all))
+(defun start () (application:ensure_all_started (APP)))
+(defun stop () (application:stop (APP)))
 
-; (include-lib "poise/include/poise.lfe")
+;;; Poise API
 
-; (defun site (route-list opts-map)
-;   (make-site
-;     routes (lists:map (match-lambda
-;                         ((`(,p ,f)) (when (is_function f))
-;                           (make-route path p func f))
-;                         ((`(,p ,d))
-;                           (make-route path p data d)))
-;                       route-list)
-;     opts (make-options output-dir
-;                        (maps:get 'output-dir opts-map))))
+;; TBD
 
-; (defun generate-route
-;   ((output-dir (match-route path path func func)) (when (is_function func))
-;     (generate-route
-;       output-dir
-;       (make-route path path data (funcall func))))
-;   ((output-dir (match-route path path data data))
-;     (let ((filename (filename:join output-dir path)))
-;       (filelib:ensure_dir filename)
-;       (case (file:write_file filename (list_to_binary data))
-;         ('ok (io:format "Created ~s.~n" `(,filename)))
-;         (err err)))))
+;;; Debug
 
-; (defun generate
-;   (((= (match-site
-;          routes routes
-;          opts (= (match-options
-;                    output-dir output-dir) opts)) data))
-;   (lists:map (lambda (x) (generate-route output-dir x)) routes)
-;   'ok))
+(defun echo (msg)
+  (gen_server:call (SERVER) `#(cmd echo ,msg)))
+
+(defun pid ()
+  (erlang:whereis (SERVER)))
+
+(defun ping ()
+  (gen_server:call (SERVER) `#(cmd ping)))
+
+(defun state ()
+  (gen_server:call (SERVER) `#(cmd state)))
+
+(defun raw (raw-cmd)
+  (gen_server:call (SERVER) `#(cmd gplot ,raw-cmd)))

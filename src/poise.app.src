@@ -5,9 +5,11 @@
    [poise,
     equipoise]},
   {registered, []},
-  {applications,[kernel,stdlib]},
+  {mod, {'poise-app', []}},
+  {applications,[kernel,stdlib,erlexec]},
   {included_applications, []},
   {env, []},
+  {modules, []},
 
   %% Package metadata:
   {pkg_name, poise},
