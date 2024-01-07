@@ -19,8 +19,8 @@
 
 ;;; Constants
 
-(defun APP () 'plottah)
-(defun SERVER () 'plottah-svr)
+(defun APP () 'poise)
+(defun SERVER () 'poise-svr)
 ;;(defun default-ms-delay () 100)
 ;;(defun default-ms-long-delay () 1000)
 
@@ -48,4 +48,4 @@
   (gen_server:call (SERVER) `#(cmd state)))
 
 (defun raw (raw-cmd)
-  (gen_server:call (SERVER) `#(cmd gplot ,raw-cmd)))
+  (gen_server:call (SERVER) `#(cmd mdsplode ,raw-cmd)))

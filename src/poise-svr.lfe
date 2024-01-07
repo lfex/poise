@@ -9,6 +9,7 @@
    (init 1)
    (handle_call 3)
    (handle_cast 2)
+   (handle_continue 2)
    (handle_info 2)
    (terminate 2)
    (code_change 3)))
@@ -22,6 +23,14 @@
 (defun SERVER () (MODULE))
 (defun initial-state () #m())
 (defun genserver-opts () '())
+(defun bin-map () #m(exec "/Users/oubiwann/lab/oxur/mdsplode/bin/mdsplode"
+                     cmd "shell"
+                     args "--log-level debug --headless"))
+(defun erlexec-opts (mgr-pid)
+  `(stdin
+    #(stdout ,mgr-pid)
+    #(stderr ,mgr-pid)
+    monitor))
 
 ;;; -------------------------
 ;;; gen_server implementation
@@ -42,13 +51,11 @@
 
 (defun init (state)
   (log-info "Initialising poise server ...")
-  (erlang:process_flag 'trap_exit 'true)
-  (let ((`#(ok ,pid ,os-pid) (exec:run_link "mdsploder" (erlexec-opts (self)))))
-    `#(ok ,(maps:merge state `#m(pid ,pid os-pid ,os-pid)))))
+  `#(ok ,state #(continue first-run)))
 
 (defun handle_cast
   ((msg state)
-   (unknown-command msg)
+   (unknown-cast msg)
    `#(noreply ,state)))
 
 (defun handle_call
@@ -67,19 +74,41 @@
    (let ((output (exec:send os-pid (list_to_binary (++ cmd "\n")))))
      ;; (log-debug (string:substr output 0 1000))
      ;; for some operations, erlexec needs to give mdsplode a little time to catch up:
-     (timer:sleep ms-delay))
-   `#(reply ok ,state))
+     (timer:sleep ms-delay)
+     (log-debug "Got output: ~p" (list output))
+     `#(reply ,output ,state)))
   ((msg _from state)
-   `#(reply ,(unknown-command msg) ,state)))
+   `#(reply ,(unknown-call msg) ,state)))
+
+(defun handle_continue
+  (('first-run state)
+   (erlang:process_flag 'trap_exit 'true)
+   (let ((`#(ok ,pid ,os-pid) (exec:run_link (executable (bin-map)) (erlexec-opts (self)))))
+     `#(noreply ,(maps:merge state `#m(pid ,pid os-pid ,os-pid)))))
+  ((msg state)
+   `#(reply ,(unknown-continue msg) ,state)))
 
 (defun handle_info
-  ;; Output from mdsploder
-  ((`#(stdout ,_pid ,msg) state)
-   (io:format "~s~n" (list (string:substr (binary_to_list msg) 1 1000)))
+  ;; Output from mdsplode
+  ((`#(ok, ()) state)
    `#(noreply ,state))
-  ;; Output from mdsploder
+  ((`#(ok, (,head . ,tail)) state)
+   (handle_info head state)
+   (handle_info `#(ok ,tail) state))
+  ;; Command-specific message handlers for mdsplode
+  ((`#(result "pong") state)
+   (log-info "The mdsplode binary is alive.")
+   `#(noreply ,state))
+  ;; Raw stdout from mdsplode
+  ((`#(stdout ,_pid ,msg) state)
+   (let* ((raw (binary_to_list msg))
+          (result (string:trim (io_lib:format "~s" (list raw)))))
+     (io:format "stdout: ~p~n" (list raw))
+     (handle_info `#(result ,result) state)
+     `#(noreply ,state)))
+  ;; Raw stderr from mdsplode
   ((`#(stderr ,_pid ,msg) state)
-   (io:format "~s~n" (list (string:substr (binary_to_list msg) 1 1000)))
+   (io:format "stderr: ~s~n" (list (string:trim (lists:flatten (binary_to_list msg)))))
    `#(noreply ,state))
   ((`#(EXIT ,_from normal) state)
    `#(noreply ,state))
@@ -100,19 +129,28 @@
 ;;; private functions
 ;;; -----------------------
 
-(defun erlexec-opts (mgr-pid)
-  `(stdin
-    pty
-    #(stdout ,mgr-pid)
-    #(stderr ,mgr-pid)
-    monitor))
-
-(defun unknown-command (data)
-  (let ((msg (io_lib:format "Unknown command: ~p" `(,data))))
+(defun unknown-call (data)
+  (let ((msg (io_lib:format "Unknown call: ~p" `(,data))))
     (log-error msg)
-    #(error mag)))
+    `#(error msg)))
+
+(defun unknown-cast (data)
+  (let ((msg (io_lib:format "Unknown cast: ~p" `(,data))))
+    (log-error msg)
+    `#(error msg)))
+
+(defun unknown-continue (data)
+  (let ((msg (io_lib:format "Unknown continuet: ~p" `(,data))))
+    (log-error msg)
+    `#(error msg)))
 
 (defun unhandled-info (data)
   (let ((msg (io_lib:format "Unhandled info: ~p" `(,data))))
     (log-warn msg)
-    #(error mag)))
+    `#(error msg)))
+
+(defun executable (bin-map)
+  (lists:flatten (io_lib:format "~s ~s ~s"
+                                (list (mref bin-map 'exec)
+                                      (mref bin-map 'cmd)
+                                      (mref bin-map 'args)))))
