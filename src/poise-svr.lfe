@@ -23,7 +23,8 @@
 (defun SERVER () (MODULE))
 (defun initial-state () #m())
 (defun genserver-opts () '())
-(defun bin-map () #m(exec "/Users/oubiwann/lab/oxur/mdsplode/bin/mdsplode"
+;;(defun bin-map () #m(exec "/Users/oubiwann/lab/oxur/mdsplode/bin/mdsplode"
+(defun bin-map () #m(exec "mdsplode"
                      cmd "shell"
                      args "--log-level debug --headless"))
 (defun erlexec-opts (mgr-pid)
