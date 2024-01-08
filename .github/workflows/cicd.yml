@@ -33,6 +33,7 @@ jobs:
     - name: Install Deps
       run: |
         sudo apt-get install libjq-dev libonig-dev
+        cargo install mdsplode
     - name: Check rebar3 Version
       run: rebar3 --version
     - name: Compile
