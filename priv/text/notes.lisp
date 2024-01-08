@@ -1,0 +1,6 @@
+(poise:start)
+(sploder:version)
+(sploder:read 'md "priv/testing/learn.md"))
+(sploder:frontmatter)
+(sploder:query "'.children.nodes[] | select((.depth == 3) and .source == \"Getting Started\")'")
+(sploder:echo "this is a test")

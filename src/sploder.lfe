@@ -11,6 +11,9 @@
 (defun echo (msg)
   (poise:raw (++ "echo " msg)))
 
+(defun frontmatter ()
+  (poise:raw (++ "show frontmatter")))
+
 (defun help ()
   (poise:raw "help"))
 
@@ -23,8 +26,11 @@
 (defun query (q-str)
   (poise:raw (++ "query " q-str)))
 
-(defun read (type file)
-  (poise:raw (++ "read " type " " file)))
+(defun read
+  ((type file) (when (is_atom type))
+   (read (atom_to_list type) file))
+  ((type file)
+   (poise:raw (++ "read " type " " file))))
 
 (defun show (cmd)
   (poise:raw (++ "show " cmd)))

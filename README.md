@@ -33,7 +33,13 @@ While early versions of the poise LFE library were inspired by the Clojure
 
 ## Usage [&#x219F;](#contents)
 
-TBD
+https://github.com/oxur/mdsplode/blob/release/0.3.x/docs/jq-support.md
+
+export JQ_LIB_DIR=/opt/homebrew/Cellar/jq/1.6/lib
+export ONIG_LIB_DIR=/opt/homebrew/Cellar/oniguruma/6.9.7.1/lib
+cargo install mdsplode
+rebar3 compile
+rebar3 lfe repl
 
 ## Name [&#x219F;](#contents)
 

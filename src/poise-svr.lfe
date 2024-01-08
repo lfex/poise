@@ -95,19 +95,38 @@
   ((`#(ok, (,head . ,tail)) state)
    (handle_info head state)
    (handle_info `#(ok ,tail) state))
-  ;; Command-specific message handlers for mdsplode
-  ((`#(result "ping" "pong") state)
+  ;; Command-specific message handlers for mdsplode - note that results that
+  ;; potentially have arbitrarily many spaces in them need to be pattern-
+  ;; matched with `cons` (head/tail).
+  ((`#(result ("ping") "pong") state)
    (log-info "The mdsplode binary is alive.")
    `#(noreply ,state))
-  ((`#(result "version" ,version) state)
+  ((`#(result ("echo" . ,_) ,msg) state)
+   (log-info "Echo response from mdsplode binary: '~s'" (list msg))
+   `#(noreply ,state))
+  ((`#(result ("query" . ,_) ,jq-result) state)
+   (log-debug "Raw query result: ~s" (list jq-result))
+   (let ((parsed (parse-json jq-result)))
+     (log-info "Front matter JSON: ~p" (list parsed))
+     `#(noreply ,state)))
+  ((`#(result ("read" "md" ,_) ,markdown-file) state)
+   (log-info "Read Markdown file: ~s" (list markdown-file))
+   `#(noreply ,state))
+  ((`#(result ("show" "frontmatter") ,json-string) state)
+   (log-debug "Raw front matter: ~s" (list json-string))
+   (let ((parsed (parse-json json-string)))
+     (log-info "Front matter JSON: ~p" (list parsed))
+     `#(noreply ,state)))
+  ((`#(result ("version") ,version) state)
    (log-info "The mdsplode binary version: ~s" (list version))
    `#(noreply ,state))
   ;; Raw stdout from mdsplode
   ((`#(stdout ,_pid ,json) state)
-   (let ((parsed (jsx:decode json '(#(labels atom)))))
-     (log-debug "stdout: ~p~n" (list json))
+   (log-debug "stdout (raw JSON): ~p~n" (list json))
+   (let ((parsed (parse-json json '(#(labels atom)))))
+     (log-debug "stdout (parsed JSON): ~p~n" (list parsed))
      (handle_info `#(result
-                     ,(binary_to_list (mref parsed 'command))
+                     ,(string:tokens (binary_to_list (mref parsed 'command)) " ")
                      ,(binary_to_list (mref parsed 'result)))
                   state)
      `#(noreply ,state)))
@@ -159,3 +178,12 @@
                                 (list (mref bin-map 'exec)
                                       (mref bin-map 'cmd)
                                       (mref bin-map 'args)))))
+
+(defun parse-json
+  ((json) (when (is_list json))
+   (parse-json (list_to_binary json)))
+  ((json)
+   (parse-json json '(dirty_strings #(labels atom)))))
+
+(defun parse-json (json opts)
+  (jsx:decode json opts))

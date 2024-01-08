@@ -12,7 +12,7 @@
 ;;; --------------------------
 
 (defun start (_type _args)
-  (logger:set_application_level 'poise 'info)
+  (logger:set_application_level 'poise 'debug)
   (logjam:set-dev-config)
   (log-info "Starting poise application ...")
   (poise-sup:start_link))
