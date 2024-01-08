@@ -15,6 +15,10 @@ jobs:
   core-builds:
     name: Erlang ${{ matrix.otp_version }} build
     runs-on: ubuntu-latest
+    env:
+        JQ_LIB_DIR: /lib/x86_64-linux-gnu
+        ONIG_LIB_DIR: /lib/x86_64-linux-gnu
+        LD_LIBRARY_PATH: /lib/x86_64-linux-gnu
 
     strategy:
       matrix:
@@ -26,6 +30,9 @@ jobs:
       with:
         otp-version: ${{ matrix.otp_version }}
         rebar3-version: '3.22'
+    - name: Install Deps
+      run: |
+        sudo apt-get install libjq-dev libonig-dev
     - name: Check rebar3 Version
       run: rebar3 --version
     - name: Compile
